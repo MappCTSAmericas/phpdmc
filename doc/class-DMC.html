@@ -1,0 +1,3937 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class DMC | dmc-soapclient</title>
+
+	<script type="text/javascript" src="resources/combined.js?174271566"></script>
+	<script type="text/javascript" src="elementlist.js?3866267719"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-DMC.html">DMC<span></span></a>
+						<ul>
+				<li class="active"><a href="package-DMC.PHPSoapClient.html">PHPSoapClient</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-DMC.html">DMC</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-DMC.PHPSoapClient.html" title="Summary of DMC\PHPSoapClient"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+			<li>
+				<a href="dmc-soapclient-api-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+			</li>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class DMC</h1>
+
+
+	<div class="description">
+	
+<p>Provides basic access to DMC API functions.</p>
+
+<p>To use this client to access your instance of Teradata's Digital Messaging
+Center, include it in your script then instantiate it by providing your SOAP
+endpoint and login credentials. To display faults for debugging during
+development, set $fault_trace to 'true'.</p>
+
+<p>NOTE: Setting $fault_trace to 'true' will return <b>all</b> faults, including
+those that are to be expected during normal script operation.</p>
+
+<pre>
+<span class="xlang">&lt;?php</span>
+<span
+class="php-keyword1">include</span> <span
+class="php-quote">'/path/to/dmc.php'</span>;
+
+<span
+class="php-var">$soap_url</span> = <span
+class="php-quote">'https://sslc.teradatadmc.com/[some_path]/api/soap/v2?wsdl'</span>;
+<span
+class="php-var">$soap_settings</span> = <span
+class="php-keyword1">array</span>(
+ <span
+class="php-quote">'login'</span> =&gt; <span
+class="php-quote">'apiuser@yourdomain.com'</span>,
+ <span
+class="php-quote">'password'</span> =&gt; <span
+class="php-quote">'apiuserpassword'</span>,
+);
+<span
+class="php-var">$fault_trace</span> = <span
+class="php-keyword1">true</span>;
+
+<span class="php-var">$dmc</span> = <span
+class="php-keyword1">new</span> DMC( <span
+class="php-var">$soap_url</span>, <span
+class="php-var">$soap_settings</span>, <span
+class="php-var">$fault_trace</span> );
+<span class="xlang">?&gt;</span>
+</pre>
+
+<p>Similarly, if you'd like to use this without providing your credentials for
+each instance, you can update the class constructor to reflect your login
+information.</p>
+
+<pre>
+<span class="php-keyword1">public</span> <span
+class="php-keyword1">function</span> __construct() {
+     <span
+class="php-var">$this</span>-&gt;fault_trace = <span
+class="php-keyword1">true</span>;
+
+     <span
+class="php-var">$this</span>-&gt;soap_url = <span
+class="php-quote">'https://sslc.teradatadmc.com/[some_path]/api/soap/v2?wsdl'</span>;
+     <span
+class="php-var">$this</span>-&gt;soap_settings = <span
+class="php-keyword1">array</span>(
+       <span
+class="php-quote">'login'</span> =&gt; <span
+class="php-quote">'apiuser@yourdomain.com'</span>,
+       <span
+class="php-quote">'password'</span> =&gt; <span
+class="php-quote">'apiuserpassword'</span>,
+     );
+     <span
+class="php-var">$this</span>-&gt;soap = <span
+class="php-keyword1">new</span> SoapClient( <span
+class="php-var">$this</span>-&gt;soap_url, <span
+class="php-var">$this</span>-&gt;soap_settings );
+}
+</pre>
+
+<p>Please refer to the included documentation for more information regarding
+specific class methods and API functions.</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-DMC.html">DMC</a>\<a href="package-DMC.PHPSoapClient.html">PHPSoapClient</a><br />
+
+				<b>Copyright:</b>
+				Copyright (c) 2014, Teradata Interactive<br />
+				<b>Author:</b>
+				Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				<b>Author:</b>
+				Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				<b>Since:</b>
+				v1.0.0<br />
+		<b>Located at</b> <a href="source-class-DMC.html#24-1675" title="Go to source code">dmc.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-DMC.html">DMC</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-DMC.html#141-174" title="Go to source code">__construct</a>( <span>string <var>$soap_url</var></span>, <span>array <var>$soap_settings</var></span>, <span>boolean <var>$fault_trace</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$benchmark</var> = <span class="php-keyword1">false</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Constructs class object and sets up SOAP options.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Constructs class object and sets up SOAP options.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$soap_url</var></dt>
+					<dd><code>string</code><br>$soap_url SOAP endpoint URL</dd>
+					<dt><var>$soap_settings</var></dt>
+					<dd><code>array</code><br>$soap_settings SOAP settings array</dd>
+					<dt><var>$fault_trace</var></dt>
+					<dd><code>boolean</code><br>$fault_trace Display SOAP fault and exception information for debugging.
+Defaults to false.</dd>
+					<dt><var>$benchmark</var></dt>
+					<dd><code>boolean</code><br>$benchmark Output benchmark statement after actions are completed. (Default:
+false)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-DMC.html">DMC</a></code></code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#$soap_url">DMC::<var>$soap_url</var></a></code></code> <br />
+						<code><code><a href="class-DMC.html#$soap_settings">DMC::<var>$soap_settings</var></a></code></code> <br />
+						<code><code><a href="class-DMC.html#$fault_trace">DMC::<var>$fault_trace</var></a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__destruct" id="___destruct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___destruct">#</a>
+		<code><a href="source-class-DMC.html#176-190" title="Go to source code">__destruct</a>( )</code>
+
+		<div class="description short">
+			
+<p>If class is instantiated with $benchmark = true, displays seconds taken to
+complete class actions on script completion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>If class is instantiated with $benchmark = true, displays seconds taken to
+complete class actions on script completion.</p>
+
+
+
+
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="api_version" id="_api_version">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_api_version">#</a>
+		<code><a href="source-class-DMC.html#195-211" title="Go to source code">api_version</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns API version of current DMC instance</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns API version of current DMC instance</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>API Version<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_dmcinfo">DMC::dmcinfo()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ecm_version" id="_ecm_version">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ecm_version">#</a>
+		<code><a href="source-class-DMC.html#213-229" title="Go to source code">ecm_version</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns build number of current DMC instance</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns build number of current DMC instance</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Build number<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_dmcinfo">DMC::dmcinfo()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="functions" id="_functions">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_functions">#</a>
+		<code><a href="source-class-DMC.html#231-250" title="Go to source code">functions</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns list of available functions on the current DMC instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns list of available functions on the current DMC instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>List of available functions<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_dmcinfo">DMC::dmcinfo()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create_attribute" id="_create_attribute">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create_attribute">#</a>
+		<code><a href="source-class-DMC.html#255-289" title="Go to source code">create_attribute</a>( <span>string <var>$name</var></span>, <span>string <var>$type</var></span>, <span>array <var>$enumeration_values</var> = [ ]</span>, <span>boolean <var>$active</var> = <span class="php-keyword1">true</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Creates a new data field where information about users can be stored.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Creates a new data field where information about users can be stored.</p>
+
+<p>With the standard DMC setup, you are permitted to create a limited number of
+custom attributes with different data types. Each custom user attribute has a
+unique name. If an attribute is no longer needed, it may be archived. Please
+contact your customer support representative if you need to delete an
+attribute.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name Desired custom attribute name</dd>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type Acceptable values are 'string', 'number', and 'boolean'</dd>
+					<dt><var>$enumeration_values</var></dt>
+					<dd><code>array</code><br>$enumeration_values List of acceptable values for this field</dd>
+					<dt><var>$active</var></dt>
+					<dd><code>boolean</code><br>$active</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_attributes" id="_get_attributes">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_attributes">#</a>
+		<code><a href="source-class-DMC.html#291-310" title="Go to source code">get_attributes</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns a list of all active custom attributes.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns a list of all active custom attributes.</p>
+
+<p>Attributes with the status 'archived' or 'system' will not be included in the
+list.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br>List of available custom attribute objects. False if unsuccessful or no
+attributes.<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="archive_attribute" id="_archive_attribute">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_archive_attribute">#</a>
+		<code><a href="source-class-DMC.html#312-335" title="Go to source code">archive_attribute</a>( <span>string <var>$attribute</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Archives custom attributes.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Archives custom attributes.</p>
+
+<p>An archived attribute is still stored in the system. The attribute can still
+be in use for existing messages and sendouts, but it will not be available in
+the GUI message creation process (i.e. personalization builder).</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attribute</var></dt>
+					<dd><code>string</code><br>$attribute Name of attribute to be archived.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="activate_attribute" id="_activate_attribute">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_activate_attribute">#</a>
+		<code><a href="source-class-DMC.html#337-359" title="Go to source code">activate_attribute</a>( <span>string <var>$attribute</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Activates custom attributes.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Activates custom attributes.</p>
+
+<p>Reactivates archived custom attributes that are named in parameter list.
+After activation, they can be used in personalization during the message
+composition process.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attribute</var></dt>
+					<dd><code>string</code><br>$attribute Name of attribute to be reactivated.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_link_categories" id="_get_link_categories">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_link_categories">#</a>
+		<code><a href="source-class-DMC.html#361-377" title="Go to source code">get_link_categories</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns a list of all currently defined active link categories.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns a list of all currently defined active link categories.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create_link_categories" id="_create_link_categories">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create_link_categories">#</a>
+		<code><a href="source-class-DMC.html#379-413" title="Go to source code">create_link_categories</a>( <span>array <var>$categories</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Creates new link categories.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Creates new link categories.</p>
+
+<p>Link categories are automatically assigned to a link via a regex pattern. The
+link categories group together different links for statistical purposes and can
+be used to trigger automated processes when a link of a certain category is
+clicked. The name and pattern are mandatory inputs for the category. The ID is
+automatically assigned by the system.</p>
+
+<p>Input example:</p>
+
+<pre>
+<span class="php-var">$categories</span> = <span
+class="php-keyword1">array</span>(
+  <span
+class="php-quote">'name'</span> =&gt; <span
+class="php-quote">'email'</span>,
+  <span
+class="php-quote">'description'</span> =&gt; <span
+class="php-quote">&quot;Test category - matches an email address&quot;</span>,
+  <span
+class="php-quote">'pattern'</span> =&gt; <span
+class="php-quote">'/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'</span>,
+ );
+</pre>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$categories</var></dt>
+					<dd><code>array</code><br>$categories Associative array of category parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update_link_category" id="_update_link_category">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update_link_category">#</a>
+		<code><a href="source-class-DMC.html#415-444" title="Go to source code">update_link_category</a>( <span>array <var>$category</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Updates an existing link category identified by the parameter category.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Updates an existing link category identified by the parameter category.</p>
+
+<p>Input example:</p>
+
+<pre>
+<span class="php-var">$category</span> = <span
+class="php-keyword1">array</span>(
+  <span
+class="php-quote">'id'</span> =&gt; <span
+class="php-num">3000000009</span>,
+  <span
+class="php-quote">'name'</span> =&gt; <span
+class="php-quote">'email'</span>,
+  <span
+class="php-quote">'description'</span> =&gt; <span
+class="php-quote">&quot;Test category - now matches any URL&quot;</span>,
+  <span
+class="php-quote">'pattern'</span> =&gt; <span
+class="php-quote">'/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'</span>,
+ );
+</pre>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$category</var></dt>
+					<dd><code>array</code><br>$category Associative array of category parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete_link_categories" id="_delete_link_categories">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete_link_categories">#</a>
+		<code><a href="source-class-DMC.html#446-477" title="Go to source code">delete_link_categories</a>( <span>string|array <var>$categories</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Updates an existing link category or list of categories..</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Updates an existing link category or list of categories..</p>
+
+<p>Input example:</p>
+
+<pre>
+<span class="php-var">$category</span> = <span
+class="php-quote">'deleteThis'</span>;
+<span
+class="php-var">$categories</span> = <span
+class="php-keyword1">array</span>(
+  <span
+class="php-quote">'deleteThisCategory'</span>,
+  <span
+class="php-quote">'deleteThisCategoryToo'</span>,
+  <span
+class="php-quote">'deleteThisCategoryAsWell,
+);
+</span></pre>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$categories</var></dt>
+					<dd><code>string|array</code><br>$categories Name or list of category names to delete.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_group" id="_get_group">
+
+		<td class="attributes"><code>
+			 public 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_group">#</a>
+		<code><a href="source-class-DMC.html#482-501" title="Go to source code">get_group</a>( <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Gets a group object by group ID.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Gets a group object by group ID.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id Group ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br>Group<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="clone_group" id="_clone_group">
+
+		<td class="attributes"><code>
+			 public 
+			obj|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_clone_group">#</a>
+		<code><a href="source-class-DMC.html#503-548" title="Go to source code">clone_group</a>( <span>integer <var>$group_id</var></span>, <span>array <var>$options</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Clones an already-existing group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Clones an already-existing group.</p>
+
+<p>Creates a clone of a specific group that already exists in the system. Most
+of the sendout options and delivery settings are identical for the original and
+the clone. However, group members are not copied; that is, members of the group
+are not members of the clone. With the options array you have to specify how and
+with what mandatory parameters the group will be cloned.</p>
+
+<p>Example:</p>
+
+<pre>
+<span class="php-var">$group_id</span> = <span
+class="php-num">4000003587</span>;
+<span class="php-var">$options</span> = <span
+class="php-keyword1">array</span>(
+  <span
+class="php-quote">'name'</span>                     =&gt; <span
+class="php-quote">'Group Clone'</span>, <span
+class="php-comment">// must be unique in your system</span>
+  <span
+class="php-quote">'description'</span>              =&gt; <span
+class="php-quote">'Group Description'</span>,
+  <span
+class="php-quote">'email'</span>                    =&gt; <span
+class="php-quote">'groupclone@yourdomain.teradatadmc.com'</span>, <span
+class="php-comment">// must be valid and unique in your system</span>
+  <span
+class="php-quote">'includePreparedMessages'</span>  =&gt; bool, <span
+class="php-comment">// set to true to include all prepared messages</span>
+  <span
+class="php-quote">'includeTestUsers'</span>         =&gt; bool, <span
+class="php-comment">// set to true to include test users</span>
+);
+
+<span
+class="php-var">$dmc</span>-&gt;clone_group( <span
+class="php-var">$group_id</span>, <span
+class="php-var">$options</span> );
+</pre>
+
+<p>NOTE: Your API user must be a group manager of the group you are attempting
+to clone.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id Group ID</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options Options array (see example)</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj|boolean</code><br>Group object on success. False if no group created.<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_group_attributes" id="_get_group_attributes">
+
+		<td class="attributes"><code>
+			 public 
+			obj|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_group_attributes">#</a>
+		<code><a href="source-class-DMC.html#550-571" title="Go to source code">get_group_attributes</a>( <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Provides a list of group attributes.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Provides a list of group attributes.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id Group ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj|boolean</code><br>Group object on success. False if no group or associated attributes available..<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="find_group_by_attribute" id="_find_group_by_attribute">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_find_group_by_attribute">#</a>
+		<code><a href="source-class-DMC.html#573-593" title="Go to source code">find_group_by_attribute</a>( <span>array <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Creates and updates the group attributes. Existing attributes are
+overwritten.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Creates and updates the group attributes. Existing attributes are
+overwritten.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes Associative array of attributes and values to search for</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="set_group_attributes" id="_set_group_attributes">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_set_group_attributes">#</a>
+		<code><a href="source-class-DMC.html#595-617" title="Go to source code">set_group_attributes</a>( <span>integer <var>$group_id</var></span>, <span>array <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Creates and updates the group attributes. Existing attributes are
+overwritten.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Creates and updates the group attributes. Existing attributes are
+overwritten.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id Group ID</dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes Associative array of attributes to set</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_prepared_messages" id="_get_prepared_messages">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_prepared_messages">#</a>
+		<code><a href="source-class-DMC.html#619-638" title="Go to source code">get_prepared_messages</a>( <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns all of the prepared messages for a specific group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns all of the prepared messages for a specific group.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id Group ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br>Array of message IDs on success. False if error or no messages found.<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="archive_group" id="_archive_group">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_archive_group">#</a>
+		<code><a href="source-class-DMC.html#640-660" title="Go to source code">archive_group</a>( <span>integer|array <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Archive a list of groups and any dependent subgroups. Other dependent
+objects, such as triggers and scheduled tasks, are not archived.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Archive a list of groups and any dependent subgroups. Other dependent
+objects, such as triggers and scheduled tasks, are not archived.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer|array</code><br>$group_id Group ID or array of group IDs</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>False if error.<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="activate_group" id="_activate_group">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_activate_group">#</a>
+		<code><a href="source-class-DMC.html#662-681" title="Go to source code">activate_group</a>( <span>integer|array <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Activate a previously archived group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Activate a previously archived group.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer|array</code><br>$group_id Group ID or array of group IDs</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>False if error.<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create_user" id="_create_user">
+
+		<td class="attributes"><code>
+			 public 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create_user">#</a>
+		<code><a href="source-class-DMC.html#686-714" title="Go to source code">create_user</a>( <span>string <var>$email</var></span>, <span>integer <var>$mobile</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$attributes</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Create a user profile from email. Can be used to add user mobile and add
+profile attributes, if applicable..</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a user profile from email. Can be used to add user mobile and add
+profile attributes, if applicable..</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email User email</dd>
+					<dt><var>$mobile</var></dt>
+					<dd><code>integer</code><br>$mobile User mobile</dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes Associative array of user profile attributes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_build_attributes_object">DMC::build_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_user" id="_get_user">
+
+		<td class="attributes"><code>
+			 public 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_user">#</a>
+		<code><a href="source-class-DMC.html#716-734" title="Go to source code">get_user</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Look up single user</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Look up single user</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>$id User ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br>DMC user<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_update_profile">DMC::update_profile()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_profile">DMC::replace_profile()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_delete_user">DMC::delete_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_membership_attributes">DMC::update_membership_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_membership_attributes">DMC::replace_membership_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_send_single_message">DMC::send_single_message()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_send_transactional_message">DMC::send_transactional_message()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_user_by_email" id="_get_user_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_user_by_email">#</a>
+		<code><a href="source-class-DMC.html#736-757" title="Go to source code">get_user_by_email</a>( <span>string <var>$email</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Look up single user by email address</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Look up single user by email address</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email User email</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br>DMC user<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_update_profile_by_email">DMC::update_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_profile_by_email">DMC::replace_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_delete_user_by_email">DMC::delete_user_by_email()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_profile" id="_get_profile">
+
+		<td class="attributes"><code>
+			 public 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_profile">#</a>
+		<code><a href="source-class-DMC.html#759-778" title="Go to source code">get_profile</a>( <span>string <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Look up single user's profile by user ID.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Look up single user's profile by user ID.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>string</code><br>$id User ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br>DMC user profile<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_sanitize_attributes_object">DMC::sanitize_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_profile_by_email" id="_get_profile_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_profile_by_email">#</a>
+		<code><a href="source-class-DMC.html#780-801" title="Go to source code">get_profile_by_email</a>( <span>string <var>$email</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Look up single user's profile by email.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Look up single user's profile by email.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email User email</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br>DMC user profile<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update_profile" id="_update_profile">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update_profile">#</a>
+		<code><a href="source-class-DMC.html#803-833" title="Go to source code">update_profile</a>( <span>integer <var>$id</var></span>, <span>array <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Updates the user's profile by user ID.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Updates the user's profile by user ID.</p>
+
+<p>Update a user's profile with the information saved in the attribute list.
+This method only changes the information that is explicitly mentioned.
+Attributes that are not mentioned are not changed.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>$id</dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_replace_profile">DMC::replace_profile()</a></code></code><br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user">DMC::get_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_build_attributes_object">DMC::build_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update_profile_by_email" id="_update_profile_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update_profile_by_email">#</a>
+		<code><a href="source-class-DMC.html#835-868" title="Go to source code">update_profile_by_email</a>( <span>string <var>$email</var></span>, <span>array <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Updates the user's profile by email address.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Updates the user's profile by email address.</p>
+
+<p>Update a user's profile with the information saved in the attribute list.
+This method only changes the information that is explicitly mentioned.
+Attributes that are not mentioned are not changed.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email</dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_update_profile">DMC::update_profile()</a></code></code><br />
+						<code><code><a href="class-DMC.html#_replace_profile">DMC::replace_profile()</a></code></code><br />
+						<code><code><a href="class-DMC.html#_replace_profile_by_email">DMC::replace_profile_by_email()</a></code></code><br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user_by_email">DMC::get_user_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_build_attributes_object">DMC::build_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="replace_profile" id="_replace_profile">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_replace_profile">#</a>
+		<code><a href="source-class-DMC.html#870-902" title="Go to source code">replace_profile</a>( <span>integer <var>$id</var></span>, <span>array <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Replace the user's profile by user ID.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Replace the user's profile by user ID.</p>
+
+<p>Replaces all attribute values for a specific user. All attribute values that
+are transmitted with the method are added, and replace any existing values. Any
+currently existing attribute values that are not found in the API call are
+deleted.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>$id</dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_update_profile">DMC::update_profile()</a></code></code><br />
+						<code><code><a href="class-DMC.html#_replace_profile">DMC::replace_profile()</a></code></code><br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user">DMC::get_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_build_attributes_object">DMC::build_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="replace_profile_by_email" id="_replace_profile_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_replace_profile_by_email">#</a>
+		<code><a href="source-class-DMC.html#904-933" title="Go to source code">replace_profile_by_email</a>( <span>string <var>$email</var></span>, <span>array <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Replace the user's profile by email address.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Replace the user's profile by email address.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email</dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_replace_profile">DMC::replace_profile()</a></code></code><br />
+						<code><code><a href="class-DMC.html#_update_profile">DMC::update_profile()</a></code></code><br />
+						<code><code><a href="class-DMC.html#_update_profile_by_email">DMC::update_profile_by_email()</a></code></code><br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user_by_email">DMC::get_user_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_build_attributes_object">DMC::build_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete_user" id="_delete_user">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete_user">#</a>
+		<code><a href="source-class-DMC.html#935-958" title="Go to source code">delete_user</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete an existing user from the system. False if unsuccessful or user
+doesn't exist.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete an existing user from the system. False if unsuccessful or user
+doesn't exist.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>$id User ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user">DMC::get_user()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete_user_by_email" id="_delete_user_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete_user_by_email">#</a>
+		<code><a href="source-class-DMC.html#960-984" title="Go to source code">delete_user_by_email</a>( <span>string <var>$email</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete an existing user from the system by email. False if unsuccessful or
+user doesn't exist..</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete an existing user from the system by email. False if unsuccessful or
+user doesn't exist..</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email User email address</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user_by_email">DMC::get_user_by_email()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="subscribe_member" id="_subscribe_member">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_subscribe_member">#</a>
+		<code><a href="source-class-DMC.html#989-1013" title="Go to source code">subscribe_member</a>( <span>integer <var>$user_id</var></span>, <span>integer <var>$group_id</var></span>, <span>string <var>$subsribe_mode</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Subscribes a user to a group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Subscribes a user to a group.</p>
+
+<p>Subscribes the given user to the specified group using the designated
+subscription method (CONFIRMED_OPT_IN, DOUBLE_OPT_IN, OPT_IN).</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+					<dt><var>$subsribe_mode</var></dt>
+					<dd><code>string</code><br>$subsribe_mode</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="subscribe_member_by_email" id="_subscribe_member_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_subscribe_member_by_email">#</a>
+		<code><a href="source-class-DMC.html#1015-1043" title="Go to source code">subscribe_member_by_email</a>( <span>string <var>$email</var></span>, <span>integer <var>$group_id</var></span>, <span>string <var>$subscribe_mode</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Subscribes a user to a group with their email address.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Subscribes a user to a group with their email address.</p>
+
+<p>Subscribes the given user specified by their email address to the designated
+group using the desired subscription method (CONFIRMED_OPT_IN, DOUBLE_OPT_IN,
+OPT_IN).</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+					<dt><var>$subscribe_mode</var></dt>
+					<dd><code>string</code><br>$subscribe_mode</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unsubscribe_member" id="_unsubscribe_member">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unsubscribe_member">#</a>
+		<code><a href="source-class-DMC.html#1045-1068" title="Go to source code">unsubscribe_member</a>( <span>integer <var>$user_id</var></span>, <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Unsubscribes a user from a specified group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unsubscribes a user from a specified group.</p>
+
+<p>Unsubscribes the user from the group and sends a notification to the group's
+manager.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unsubscribe_member_by_email" id="_unsubscribe_member_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unsubscribe_member_by_email">#</a>
+		<code><a href="source-class-DMC.html#1070-1095" title="Go to source code">unsubscribe_member_by_email</a>( <span>string <var>$email</var></span>, <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Unsubscribes a user from a group based on their email address.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unsubscribes a user from a group based on their email address.</p>
+
+<p>Unsubscribes the user from the group and sends an unsubscribe confirmation
+email to the user.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create_membership" id="_create_membership">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create_membership">#</a>
+		<code><a href="source-class-DMC.html#1097-1123" title="Go to source code">create_membership</a>( <span>integer <var>$user_id</var></span>, <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Creates a group membership for a user to a group without sending a
+notification</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Creates a group membership for a user to a group without sending a
+notification</p>
+
+<p>Similar to subscribe_member, a user is subscribed to a group but the only
+difference is that the notification is not sent.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete_membership" id="_delete_membership">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete_membership">#</a>
+		<code><a href="source-class-DMC.html#1125-1148" title="Go to source code">delete_membership</a>( <span>integer <var>$user_id</var></span>, <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Deletes an existing member from a group</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Deletes an existing member from a group</p>
+
+<p>Similar to unsubscribe_member, a member is unsubscribed from a group however
+the user isn't notified about the deletion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="find_all_memberships" id="_find_all_memberships">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_find_all_memberships">#</a>
+		<code><a href="source-class-DMC.html#1150-1170" title="Go to source code">find_all_memberships</a>( <span>integer <var>$user_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns a list of all memberships of a given user</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns a list of all memberships of a given user</p>
+
+<p>Returns an array of memberships objects for each group that the user is a
+part of.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_sanitize_memberships_array">DMC::sanitize_memberships_array()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="find_all_memberships_by_email" id="_find_all_memberships_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_find_all_memberships_by_email">#</a>
+		<code><a href="source-class-DMC.html#1172-1195" title="Go to source code">find_all_memberships_by_email</a>( <span>string <var>$email</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns a list of all memberships of a given user designated by email</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns a list of all memberships of a given user designated by email</p>
+
+<p>Returns an array of memberships objects for each group that the user is a
+part of. The user is determined by their email.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_sanitize_memberships_array">DMC::sanitize_memberships_array()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_membership_attributes" id="_get_membership_attributes">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_membership_attributes">#</a>
+		<code><a href="source-class-DMC.html#1197-1221" title="Go to source code">get_membership_attributes</a>( <span>integer <var>$user_id</var></span>, <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns member attributes for a user within a specified group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns member attributes for a user within a specified group.</p>
+
+<p>Returns a collection of member attributes for a user within the specified
+group. Member attributes are used to save information for an individual user,
+but in the context of a specific group. A member attribute contains a specific
+value for each recipient.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_sanitize_attributes_object">DMC::sanitize_attributes_object()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_membership_attributes_by_email" id="_get_membership_attributes_by_email">
+
+		<td class="attributes"><code>
+			 public 
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_membership_attributes_by_email">#</a>
+		<code><a href="source-class-DMC.html#1223-1251" title="Go to source code">get_membership_attributes_by_email</a>( <span>string <var>$email</var></span>, <span>integer <var>$group_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns member attributes for a user within a specified group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns member attributes for a user within a specified group.</p>
+
+<p>Returns a collection of member attributes for a user within the specified
+group. Member attributes are used to save information for an individual user,
+but in the context of a specific group. A member attribute contains a specific
+value for each recipient.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_is_valid_email">DMC::is_valid_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_sanitize_attributes_object">DMC::sanitize_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update_membership_attributes" id="_update_membership_attributes">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update_membership_attributes">#</a>
+		<code><a href="source-class-DMC.html#1253-1284" title="Go to source code">update_membership_attributes</a>( <span>string <var>$user_id</var></span>, <span>integer <var>$group_id</var></span>, <span>mixed <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Updates the member attributes for a user within a certain group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Updates the member attributes for a user within a certain group.</p>
+
+<p>Updates the member attributes for a user within a certain group, if the user
+is a member of the group. If an attribute already exists, the value will be
+updated; if not, a new attribute will be created. If an existing member
+attribute is not in the attribute list being sent in the call, it will be left
+untouched.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user_id</var></dt>
+					<dd><code>string</code><br>$email</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+					<dt><var>$attributes</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_get_user">DMC::get_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_build_attributes_object">DMC::build_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="replace_membership_attributes" id="_replace_membership_attributes">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_replace_membership_attributes">#</a>
+		<code><a href="source-class-DMC.html#1286-1319" title="Go to source code">replace_membership_attributes</a>( <span>integer <var>$user_id</var></span>, <span>integer <var>$group_id</var></span>, <span>array <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Updates the member attributes for a user within a certain group.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Updates the member attributes for a user within a certain group.</p>
+
+<p>Updates the member attributes for a user within a certain group, if the user
+is a member of the group. If an attribute already exists, the value will be
+updated; if not, a new attribute will be created. If an existing member
+attribute is not in the attribute list being sent in the call, it will be
+deleted.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id</dd>
+					<dt><var>$group_id</var></dt>
+					<dd><code>integer</code><br>$group_id</dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_get_user">DMC::get_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_build_attributes_object">DMC::build_attributes_object()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="send_single_message" id="_send_single_message">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_send_single_message">#</a>
+		<code><a href="source-class-DMC.html#1324-1363" title="Go to source code">send_single_message</a>( <span>integer <var>$message_id</var></span>, <span>integer <var>$user_id</var></span>, <span>string <var>$extra</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Sends a prepared message to a single recepient. For multiple recipients, use
+a foreach loop:</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sends a prepared message to a single recepient. For multiple recipients, use
+a foreach loop:</p>
+
+<pre>
+<span class="php-var">$message_id</span> = <span
+class="php-num">1234567890</span>;
+<span
+class="php-var">$recipients</span> = [
+  <span
+class="php-quote">'user1@host1.com'</span>,
+  <span
+class="php-quote">'user2@host2.com'</span>,
+  <span
+class="php-quote">'user3@host3.com'</span>,
+  <span
+class="php-quote">'user4@host4.com'</span>,
+  <span
+class="php-quote">'user5@host5.com'</span>,
+];
+
+<span
+class="php-keyword1">foreach</span> ( <span
+class="php-var">$recipients</span> <span class="php-keyword1">as</span> <span
+class="php-var">$recipient</span> ) {
+ <span
+class="php-var">$user</span> = <span
+class="php-var">$dmc</span>-&gt;get_user_by_email( <span
+class="php-var">$recipient</span> );
+ <span
+class="php-var">$dmc</span>-&gt;sent_single_message( <span
+class="php-var">$message_id</span>, <span
+class="php-var">$user</span>-&gt;id );
+};
+</pre>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message_id</var></dt>
+					<dd><code>integer</code><br>$message_id Message Id</dd>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id Receipent Id</dd>
+					<dt><var>$extra</var></dt>
+					<dd><code>string</code><br>$extra Additional Message Content</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user">DMC::get_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_validate_message">DMC::validate_message()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="send_transactional_message" id="_send_transactional_message">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_send_transactional_message">#</a>
+		<code><a href="source-class-DMC.html#1365-1396" title="Go to source code">send_transactional_message</a>( <span>integer <var>$message_id</var></span>, <span>string <var>$transaction_id</var></span>, <span>integer <var>$user_id</var></span>, <span>string <var>$extra</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Sends a prepared message template as a transactional message?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sends a prepared message template as a transactional message?</p>
+
+<p>Sends a previously prepared message template for a group as a transactional
+message to another user for template use?</p>
+
+<p>WARNING: This needs testing... we have no idea what it will actually do.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message_id</var></dt>
+					<dd><code>integer</code><br>$message_id</dd>
+					<dt><var>$transaction_id</var></dt>
+					<dd><code>string</code><br>$transaction_id</dd>
+					<dt><var>$user_id</var></dt>
+					<dd><code>integer</code><br>$user_id</dd>
+					<dt><var>$extra</var></dt>
+					<dd><code>string</code><br>$extra</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user">DMC::get_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_validate_message">DMC::validate_message()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_message_personalizations" id="_get_message_personalizations">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_message_personalizations">#</a>
+		<code><a href="source-class-DMC.html#1398-1423" title="Go to source code">get_message_personalizations</a>( <span>integer <var>$message_id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns message personalizations used in the given message.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns message personalizations used in the given message.</p>
+
+<p>Returns all the personalization references within the message given by the
+message ID.</p>
+
+<p>If message ID is not valid, returns false.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message_id</var></dt>
+					<dd><code>integer</code><br>$message_id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>of Personalizations or boolean<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_validate_message">DMC::validate_message()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validate_message" id="_validate_message">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validate_message">#</a>
+		<code><a href="source-class-DMC.html#1425-1444" title="Go to source code">validate_message</a>( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Validates the Message ID.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Validates the Message ID.</p>
+
+<p>Checks to see that the Message ID is valid, doesn't contain any invalid, and
+if it didn't use any archived Attributes.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Jake Lockwood &lt;<a
+href="mailto:jakelockwood27&#64;gmail.com">jakelockwood27&#64;<!---->gmail.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_send_single_message">DMC::send_single_message()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_send_transactional_message">DMC::send_transactional_message()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_message_personalizations">DMC::get_message_personalizations()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="is_valid_email" id="_is_valid_email">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_is_valid_email">#</a>
+		<code><a href="source-class-DMC.html#1449-1464" title="Go to source code">is_valid_email</a>( <span>string <var>$string</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Validates a string to check whether or not it's an email address.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Validates a string to check whether or not it's an email address.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$string</var></dt>
+					<dd><code>string</code><br>$string String to be evaluated</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_create_user">DMC::create_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user_by_email">DMC::get_user_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_profile_by_email">DMC::get_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_profile_by_email">DMC::update_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_profile_by_email">DMC::replace_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_delete_user_by_email">DMC::delete_user_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_subscribe_member_by_email">DMC::subscribe_member_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_unsubscribe_member_by_email">DMC::unsubscribe_member_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_find_all_memberships_by_email">DMC::find_all_memberships_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_membership_attributes_by_email">DMC::get_membership_attributes_by_email()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dmcinfo" id="_dmcinfo">
+
+		<td class="attributes"><code>
+			 public 
+			HTML
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dmcinfo">#</a>
+		<code><a href="source-class-DMC.html#1466-1512" title="Go to source code">dmcinfo</a>( )</code>
+
+		<div class="description short">
+			
+<p>Compiles DMC info array and uses render_info() to output a phpinfo() style
+system information page..</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compiles DMC info array and uses render_info() to output a phpinfo() style
+system information page..</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>HTML</code><br>dmcinfo page<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#$soap_url">DMC::<var>$soap_url</var></a></code></code> <br />
+						<code><code><a href="class-DMC.html#_api_version">DMC::api_version()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_ecm_version">DMC::ecm_version()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_functions">DMC::functions()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sanitize_attributes_object" id="_sanitize_attributes_object">
+
+		<td class="attributes"><code>
+			 private 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sanitize_attributes_object">#</a>
+		<code><a href="source-class-DMC.html#1517-1545" title="Go to source code">sanitize_attributes_object</a>( <span>obj <var>$object</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Cleans returned query objects into more easily usable format.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Cleans returned query objects into more easily usable format.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>obj</code><br>$object Returned query item</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br>stdClass<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_get_profile">DMC::get_profile()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_membership_attributes">DMC::get_membership_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_membership_attributes_by_email">DMC::get_membership_attributes_by_email()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="build_attributes_object" id="_build_attributes_object">
+
+		<td class="attributes"><code>
+			 private 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_build_attributes_object">#</a>
+		<code><a href="source-class-DMC.html#1547-1569" title="Go to source code">build_attributes_object</a>( <span>array <var>$array</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Prepares attributes for upload to profile</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Prepares attributes for upload to profile</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$array</var></dt>
+					<dd><code>array</code><br>$array Profile attributes array</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br>stdClass<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_create_user">DMC::create_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_profile">DMC::update_profile()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_profile_by_email">DMC::update_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_profile">DMC::replace_profile()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_profile_by_email">DMC::replace_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_membership_attributes">DMC::update_membership_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_membership_attributes">DMC::replace_membership_attributes()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sanitize_memberships_array" id="_sanitize_memberships_array">
+
+		<td class="attributes"><code>
+			 private 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sanitize_memberships_array">#</a>
+		<code><a href="source-class-DMC.html#1571-1592" title="Go to source code">sanitize_memberships_array</a>( <span>obj <var>$object</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Simplifies membership objects array to return only 'groupId' values.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Simplifies membership objects array to return only 'groupId' values.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>obj</code><br>$object</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_find_all_memberships">DMC::find_all_memberships()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_find_all_memberships_by_email">DMC::find_all_memberships_by_email()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="call" id="_call">
+
+		<td class="attributes"><code>
+			 private 
+			obj
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_call">#</a>
+		<code><a href="source-class-DMC.html#1594-1622" title="Go to source code">call</a>( <span>string <var>$function</var></span>, <span>array <var>$parameters</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Initializes PHP SoapClient class and performs SOAP call to DMC server</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Initializes PHP SoapClient class and performs SOAP call to DMC server</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$function</var></dt>
+					<dd><code>string</code><br>$function API function name</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters (optional) API function parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>obj</code><br>SOAP response<br />
+				</div>
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#$soap">DMC::<var>$soap</var></a></code></code> <br />
+						<code><code><a href="class-DMC.html#$fault_trace">DMC::<var>$fault_trace</var></a></code></code> <br />
+						<code><code><a href="class-DMC.html#_soap_drop">DMC::soap_drop()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_api_version">DMC::api_version()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_ecm_version">DMC::ecm_version()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_functions">DMC::functions()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_create_attribute">DMC::create_attribute()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_attributes">DMC::get_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_archive_attribute">DMC::archive_attribute()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_activate_attribute">DMC::activate_attribute()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_link_categories">DMC::get_link_categories()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_create_link_categories">DMC::create_link_categories()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_link_category">DMC::update_link_category()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_delete_link_categories">DMC::delete_link_categories()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_group">DMC::get_group()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_clone_group">DMC::clone_group()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_group_attributes">DMC::get_group_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_find_group_by_attribute">DMC::find_group_by_attribute()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_set_group_attributes">DMC::set_group_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_prepared_messages">DMC::get_prepared_messages()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_archive_group">DMC::archive_group()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_activate_group">DMC::activate_group()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_create_user">DMC::create_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user">DMC::get_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_user_by_email">DMC::get_user_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_profile">DMC::get_profile()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_profile_by_email">DMC::get_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_profile">DMC::update_profile()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_profile_by_email">DMC::update_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_profile">DMC::replace_profile()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_profile_by_email">DMC::replace_profile_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_delete_user">DMC::delete_user()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_delete_user_by_email">DMC::delete_user_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_subscribe_member">DMC::subscribe_member()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_subscribe_member_by_email">DMC::subscribe_member_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_unsubscribe_member">DMC::unsubscribe_member()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_unsubscribe_member_by_email">DMC::unsubscribe_member_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_create_membership">DMC::create_membership()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_delete_membership">DMC::delete_membership()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_find_all_memberships">DMC::find_all_memberships()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_find_all_memberships_by_email">DMC::find_all_memberships_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_membership_attributes">DMC::get_membership_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_membership_attributes_by_email">DMC::get_membership_attributes_by_email()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_update_membership_attributes">DMC::update_membership_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_replace_membership_attributes">DMC::replace_membership_attributes()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_send_single_message">DMC::send_single_message()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_send_transactional_message">DMC::send_transactional_message()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_get_message_personalizations">DMC::get_message_personalizations()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_validate_message">DMC::validate_message()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="soap_drop" id="_soap_drop">
+
+		<td class="attributes"><code>
+			 private 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_soap_drop">#</a>
+		<code><a href="source-class-DMC.html#1624-1645" title="Go to source code">soap_drop</a>( <span>obj <var>$reply</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Error handler.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Error handler.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$reply</var></dt>
+					<dd><code>obj</code><br>$reply SOAP fault object</dd>
+				</dl></div>
+
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_display_fault">DMC::display_fault()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+				</div>
+				<h4>Link</h4>
+				<div class="list">
+						<a href="http://goo.gl/jY9uqr">http://goo.gl/jY9uqr</a><br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="display_fault" id="_display_fault">
+
+		<td class="attributes"><code>
+			 private 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_display_fault">#</a>
+		<code><a href="source-class-DMC.html#1647-1673" title="Go to source code">display_fault</a>( <span>obj|array <var>$fault</var></span>, <span>integer <var>$i</var> = <span class="php-num">0</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Recursively outputs error details for debugging.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Recursively outputs error details for debugging.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fault</var></dt>
+					<dd><code>obj|array</code><br>$fault SOAP fault object or array containing fault details</dd>
+					<dt><var>$i</var></dt>
+					<dd><code>integer</code><br>$i Indents output</dd>
+				</dl></div>
+
+
+
+				<h4>Author</h4>
+				<div class="list">
+						Nick Silva &lt;<a
+href="mailto:nick.silva&#64;teradata.com">nick.silva&#64;<!---->teradata.com</a>&gt;<br />
+				</div>
+				<h4>Since</h4>
+				<div class="list">
+						v1.0.0<br />
+				</div>
+				<h4>Uses</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_display_fault">DMC::display_fault()</a></code></code> <br />
+				</div>
+				<h4>Used by</h4>
+				<div class="list">
+						<code><code><a href="class-DMC.html#_soap_drop">DMC::soap_drop()</a></code></code> <br />
+						<code><code><a href="class-DMC.html#_display_fault">DMC::display_fault()</a></code></code> <br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="soap_url" id="$soap_url">
+		<td class="attributes"><code>
+			private  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-DMC.html#80-92" title="Go to source code"><var>$soap_url</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$soap_url" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>SOAP endpoint URL</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>SOAP endpoint URL</p>
+
+<pre>
+<span class="php-var">$soap_url</span> = <span
+class="php-quote">'https://sslc.teradatadmc.com/[some_path]/api/soap/v2?wsdl'</span>;
+</pre>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<a
+href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a><br />
+					</div>
+					<h4>Used by</h4>
+					<div class="list">
+							<code><code><a href="class-DMC.html#___construct">DMC::__construct()</a></code></code> <br />
+							<code><code><a href="class-DMC.html#_dmcinfo">DMC::dmcinfo()</a></code></code> <br />
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="soap_settings" id="$soap_settings">
+		<td class="attributes"><code>
+			private  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-DMC.html#94-109" title="Go to source code"><var>$soap_settings</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$soap_settings" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>SOAP login credentials and client settings</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>SOAP login credentials and client settings</p>
+
+<pre>
+<span class="php-var">$soap_settings</span> = <span
+class="php-keyword1">array</span>(
+ <span
+class="php-quote">'login'</span> =&gt; <span
+class="php-quote">'apiuser@yourdomain.com'</span>,
+ <span
+class="php-quote">'password'</span> =&gt; <span
+class="php-quote">'1v3ry53cur3p@55w0Rd!'</span>
+);
+</pre>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<a
+href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a><br />
+					</div>
+					<h4>Used by</h4>
+					<div class="list">
+							<code><code><a href="class-DMC.html#___construct">DMC::__construct()</a></code></code> <br />
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="fault_trace" id="$fault_trace">
+		<td class="attributes"><code>
+			private  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-DMC.html#111-121" title="Go to source code"><var>$fault_trace</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$fault_trace" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Display SOAP fault and exception information for debugging.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Display SOAP fault and exception information for debugging.</p>
+
+<pre>
+<span class="php-var">$fault_trace</span> = <span
+class="php-keyword1">true</span>;
+</pre>
+
+
+					<h4>Used by</h4>
+					<div class="list">
+							<code><code><a href="class-DMC.html#___construct">DMC::__construct()</a></code></code> <br />
+							<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="start_time" id="$start_time">
+		<td class="attributes"><code>
+			private  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-DMC.html#123-129" title="Go to source code"><var>$start_time</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$start_time" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Beginning timestamp if benchmarking is true on object construction.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Beginning timestamp if benchmarking is true on object construction.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="soap" id="$soap">
+		<td class="attributes"><code>
+			private  
+			obj
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-DMC.html#131-139" title="Go to source code"><var>$soap</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$soap" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Internal SOAP Client</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Internal SOAP Client</p>
+
+
+					<h4>See</h4>
+					<div class="list">
+							<a
+href="http://www.php.net/manual/en/soapclient.soapclient.php">http://www.php.net/manual/en/soapclient.soapclient.php</a><br />
+					</div>
+					<h4>Used by</h4>
+					<div class="list">
+							<code><code><a href="class-DMC.html#_call">DMC::call()</a></code></code> <br />
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		dmc-soapclient API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Dear Apple: STOP IT.
+.DS_Store
+
+# Ignoring NetBeans
+nbproject/
+nbproject/*
